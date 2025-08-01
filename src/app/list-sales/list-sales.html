@@ -1,0 +1,24 @@
+<div class="flex justify-center mt-8 max-w-200 mx-auto">
+  <app-filter (sales)="updateSales($event)"></app-filter>
+</div>
+<div class="flex justify-center mt-8">
+  <table class="tale-auto border-collapse border border-gray-300 shadow-lg text-white">
+    <thead class="bg-gray-700">
+    <tr>
+      <th class="border border-gray-300 px-4 py-2">Product</th>
+      <th class="border border-gray-300 px-4 py-2">Client</th>
+      <th class="border border-gray-300 px-4 py-2">Seller</th>
+    </tr>
+    </thead>
+    <tbody>
+      @for(sale of sales; track $index){
+        <tr class="hover:bg-gray-100 hover:text-black">
+          <td class="border border-gray-300 px-4 py-2">{{sale.product}}</td>
+          <td class="border border-gray-300 px-4 py-2">{{sale.client}}</td>
+          <td class="border border-gray-300 px-4 py-2">{{sale.seller}}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
