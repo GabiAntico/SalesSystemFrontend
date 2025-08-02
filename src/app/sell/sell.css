@@ -1,0 +1,22 @@
+.ng-dropdown-panel {
+  background-color: #121414 !important;
+  border: 1px solid #4b5563;
+  color: #e5e7eb;
+  z-index: 9999;
+  min-width: 250px !important;
+  width: 250px !important;
+  left: 0 !important;
+}
+
+.ng-dropdown-panel .ng-option {
+  background-color: #121414;
+  color: #e5e7eb;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+  padding-top: 3px !important;
+  padding-bottom: 3px !important;
+}
+
+.ng-dropdown-panel .ng-option:hover {
+  background-color: #1f2937; /* un gris oscuro para hover */
+}

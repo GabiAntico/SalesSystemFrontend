@@ -3,13 +3,14 @@ import {ClientsService} from '../services/clients.service';
 import {ClientModel} from '../models/clientModel';
 import Swal from 'sweetalert2';
 import {FormsModule} from '@angular/forms';
-import {Router} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {SelectedClientService} from '../services/selected-client-service';
 
 @Component({
   selector: 'app-new-client',
   imports: [
-    FormsModule
+    FormsModule,
+    RouterLink
   ],
   templateUrl: './new-client.html',
   styleUrl: './new-client.css'

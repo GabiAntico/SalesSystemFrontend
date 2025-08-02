@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {SalesService} from '../services/sales.service';
 import {Sales} from '../models/salesModel'
@@ -7,18 +7,22 @@ import {ClientModel} from '../models/clientModel';
 import {SelectedClientService} from '../services/selected-client-service';
 import {SellerModel} from '../models/sellerModel';
 import {SaleRequestModel} from '../models/SaleRequestModel';
+import { NgSelectModule } from '@ng-select/ng-select';
+import {SelectedSellerService} from '../services/selected-seller-service';
 
 @Component({
   selector: 'app-sell',
   imports: [
+    NgSelectModule,
     FormsModule
   ],
   templateUrl: './sell.html',
-  styleUrl: './sell.css'
+  styleUrl: './sell.css',
+  encapsulation: ViewEncapsulation.None
 })
 export class Sell implements OnInit {
 
-  constructor(private salesService: SalesService, private selectedClientService: SelectedClientService, private router: Router) { }
+  constructor(private salesService: SalesService, private selectedClientService: SelectedClientService, private selectedSellerService: SelectedSellerService, private router: Router) { }
 
 
   /** Variales to Disable options that corresponds to placeholder */
@@ -31,11 +35,16 @@ export class Sell implements OnInit {
   clients: ClientModel[] = [];
   sellers: SellerModel[] = [];
 
-  selectedProduct: string = "";
-  selectedClient: number = 0;
-  selectedSeller: number = 0;
+  selectedProduct?: string;
+  selectedClient?: number;
+  selectedSeller?: number;
 
   ngOnInit() {
+
+    this.selectedProduct = undefined;
+    this.selectedClient = undefined;
+    this.selectedSeller = undefined;
+
     this.salesService.getAllProducts().subscribe({
       next: data => {
         this.products = data;
@@ -71,11 +80,18 @@ export class Sell implements OnInit {
         this.selectedClient = client.id!
       }
     });
+
+    this.selectedSellerService.getSeller().subscribe((seller) => {
+      if (seller) {
+        this.selectedSeller = seller.id!
+      }
+    })
   }
 
   postSale(){
 
-    if(this.selectedProduct === "" || this.selectedClient === 0 || this.selectedSeller === 0){
+    if(this.selectedProduct === "" || this.selectedClient === 0 || this.selectedSeller === 0 || !this.selectedProduct
+    || !this.selectedClient || !this.selectedSeller) {
       alert("Please complete all the fields");
       return;
     }
@@ -93,6 +109,8 @@ export class Sell implements OnInit {
         savedSale = data;
         if(savedSale){
           alert("Sale saved successfully");
+          this.selectedClientService.clear();
+          this.selectedSellerService.clear();
           this.router.navigate(['sales']);
         }
         else{
@@ -121,5 +139,9 @@ export class Sell implements OnInit {
 
   createClient(){
     this.router.navigate(['create-client']);
+  }
+
+  createSeller(){
+    this.router.navigate(['create-seller']);
   }
 }

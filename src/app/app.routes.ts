@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import {ListSales} from './list-sales/list-sales';
 import {Sell} from './sell/sell';
 import {NewClient} from './new-client/new-client';
+import {NewSeller} from './new-seller/new-seller';
 
 export const routes: Routes = [
   {
@@ -15,5 +16,8 @@ export const routes: Routes = [
   },
   {
     path: 'create-client', component: NewClient
+  },
+  {
+    path: 'create-seller', component: NewSeller
   }
 ];
