@@ -1,5 +1,5 @@
 export interface Sales {
-  product: string;
+  total: number;
   client: string;
   seller: string;
 }

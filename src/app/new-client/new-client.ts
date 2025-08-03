@@ -24,7 +24,14 @@ export class NewClient {
 
   saveClient(){
     if(this.clientName === "" || !this.clientName){
-      alert("Client name is required");
+      Swal.fire({
+        title: "Client name is required",
+        text: "You can't save the client without introduce the name",
+        icon: 'error',
+        showCancelButton: false,
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Ok'
+      });
       return;
     }
 

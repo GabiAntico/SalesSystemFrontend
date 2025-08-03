@@ -26,7 +26,14 @@ export class NewSeller {
   saveSeller(){
     console.log("This is the name written: " + this.sellerName)
     if(this.sellerName === "" || !this.sellerName){
-      alert("Client name is required");
+      Swal.fire({
+        title: "Seller name is required",
+        text: "You can't save the seller without introduce the name",
+        icon: 'error',
+        showCancelButton: false,
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Ok'
+      });
       return;
     }
 
