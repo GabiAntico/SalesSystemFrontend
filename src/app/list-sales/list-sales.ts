@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {SalesService} from '../services/sales.service';
 import {Sales} from '../models/salesModel';
 import {Filter} from '../filter/filter';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-list-sales',
@@ -13,7 +14,7 @@ import {Filter} from '../filter/filter';
   standalone: true
 })
 export class ListSales implements OnInit {
-  constructor(private salesService: SalesService) {
+  constructor(private salesService: SalesService, private router: Router) {
   }
 
   sales: Sales[] = [];
@@ -34,5 +35,9 @@ export class ListSales implements OnInit {
 
   updateSales(sales: Sales[]) {
     this.sales = sales;
+  }
+
+  openSaleDetail(sale: Sales) {
+    this.router.navigate(['sale-detail']);
   }
 }

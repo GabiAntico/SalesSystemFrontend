@@ -3,30 +3,36 @@
     <h2 class="text-2xl font-bold mb-6 text-gray-400">Save a new Sale</h2>
 
   <!-- Product code -->
-    <div class="mb-4 grid grid-cols-[auto_250px_auto] items-center gap-2">
-      <label for="product" class="text-gray-400 font-semibold mb-2 text-right self-center">Product</label>
+    <div class="mb-4 grid grid-cols-1 items-center gap-2">
 
-      <ng-select
-        [items]="products"
-      [(ngModel)]="selectedProduct"
-      [searchable]="true"
-      [clearable]="false"
+      <button [routerLink]="['/add-detail']" type="button"
+              class="w-full bg-green-700  text-white font-semibold py-2 px-4 rounded-md hover:bg-green-900 hover:cursor-pointer transition duration-200">
+        Add details
+      </button>
 
-      placeholder="Select a product"
-        class="w-[250px]l px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 bg-[#121414] text-gray-400"
-      name="product"
-      id="product"
+<!--      <label for="product" class="text-gray-400 font-semibold mb-2 text-right self-center">Product</label>-->
 
-      >
-      </ng-select>
+<!--      <ng-select-->
+<!--        [items]="products"-->
+<!--      [(ngModel)]="selectedProduct"-->
+<!--      [searchable]="true"-->
+<!--      [clearable]="false"-->
 
-<!--      <select (change)="disableSelectProduct()" [(ngModel)]="selectedProduct" name="product" id="product" class="w-[250px]l px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 bg-[#121414] text-gray-400">-->
-<!--        <option [disabled]="isSelectProductDisabled" value="" disabled>Select a product</option>-->
-<!--        @for(product of products; track $index){-->
-<!--          <option [ngValue]="product">{{product}}</option>-->
-<!--        }-->
-<!--      </select>-->
-      <button type="button" class="bg-yellow-400 rounded px-3 py-2 self-center justify-self-start justify-self-start font-semibold hover:bg-yellow-600 hover:cursor-pointer transition duration-200">New Product</button>
+<!--      placeholder="Select a product"-->
+<!--        class="w-[250px]l px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 bg-[#121414] text-gray-400"-->
+<!--      name="product"-->
+<!--      id="product"-->
+
+<!--      >-->
+<!--      </ng-select>-->
+
+<!--&lt;!&ndash;      <select (change)="disableSelectProduct()" [(ngModel)]="selectedProduct" name="product" id="product" class="w-[250px]l px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 bg-[#121414] text-gray-400">&ndash;&gt;-->
+<!--&lt;!&ndash;        <option [disabled]="isSelectProductDisabled" value="" disabled>Select a product</option>&ndash;&gt;-->
+<!--&lt;!&ndash;        @for(product of products; track $index){&ndash;&gt;-->
+<!--&lt;!&ndash;          <option [ngValue]="product">{{product}}</option>&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;      </select>&ndash;&gt;-->
+<!--      <button type="button" class="bg-yellow-400 rounded px-3 py-2 self-center justify-self-start justify-self-start font-semibold hover:bg-yellow-600 hover:cursor-pointer transition duration-200">New Product</button>-->
     </div>
 
   <!-- Client code -->

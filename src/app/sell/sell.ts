@@ -2,7 +2,7 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {SalesService} from '../services/sales.service';
 import {Sales} from '../models/salesModel'
-import {Router} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {ClientModel} from '../models/clientModel';
 import {SelectedClientService} from '../services/selected-client-service';
 import {SellerModel} from '../models/sellerModel';
@@ -14,7 +14,8 @@ import {SelectedSellerService} from '../services/selected-seller-service';
   selector: 'app-sell',
   imports: [
     NgSelectModule,
-    FormsModule
+    FormsModule,
+    RouterLink
   ],
   templateUrl: './sell.html',
   styleUrl: './sell.css',
