@@ -15,7 +15,6 @@ import {SelectedSellerService} from '../services/selected-seller-service';
   imports: [
     NgSelectModule,
     FormsModule,
-    RouterLink
   ],
   templateUrl: './sell.html',
   styleUrl: './sell.css',
@@ -32,29 +31,17 @@ export class Sell implements OnInit {
   isSelectProductDisabled = false;
   isSelectSellerDisabled = false;
 
-  products: string[] = [];
   clients: ClientModel[] = [];
   sellers: SellerModel[] = [];
 
-  selectedProduct?: string;
   selectedClient?: number;
   selectedSeller?: number;
 
   ngOnInit() {
 
-    this.selectedProduct = undefined;
     this.selectedClient = undefined;
     this.selectedSeller = undefined;
 
-    this.salesService.getAllProducts().subscribe({
-      next: data => {
-        this.products = data;
-      },
-      error: error => {
-        console.log('There was an error getting products');
-        console.log(error);
-      }
-    });
 
     this.salesService.getAllClients().subscribe({
       next: data => {
@@ -91,16 +78,17 @@ export class Sell implements OnInit {
 
   postSale(){
 
-    if(this.selectedProduct === "" || this.selectedClient === 0 || this.selectedSeller === 0 || !this.selectedProduct
-    || !this.selectedClient || !this.selectedSeller) {
+    if(this.selectedClient === 0 || this.selectedSeller === 0 || !this.selectedClient || !this.selectedSeller) {
       alert("Please complete all the fields");
       return;
     }
 
-    const sale: SaleRequestModel = {
-      product: this.selectedProduct,
+    // FIXME
+
+    const sale: SaleRequestModel | any = {
       clientId: this.selectedClient,
       sellerId: this.selectedSeller
+
     }
 
     let savedSale: Sales | null = null
@@ -144,5 +132,9 @@ export class Sell implements OnInit {
 
   createSeller(){
     this.router.navigate(['create-seller']);
+  }
+
+  openDetailsMenu(){
+    this.router.navigate(['add-detail']);
   }
 }

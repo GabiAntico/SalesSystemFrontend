@@ -5,7 +5,7 @@
   <!-- Product code -->
     <div class="mb-4 grid grid-cols-1 items-center gap-2">
 
-      <button [routerLink]="['/add-detail']" type="button"
+      <button (click)="openDetailsMenu()" type="button"
               class="w-full bg-green-700  text-white font-semibold py-2 px-4 rounded-md hover:bg-green-900 hover:cursor-pointer transition duration-200">
         Add details
       </button>
