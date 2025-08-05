@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {Router, RouterOutlet} from '@angular/router';
+import {SelectedClientService} from './services/selected-client-service';
+import {SelectedSellerService} from './services/selected-seller-service';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +12,11 @@ import {Router, RouterOutlet} from '@angular/router';
 export class App {
   protected title = 'TailwindAngular';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private selectedClientService: SelectedClientService, private selectedSellerService: SelectedSellerService) { }
 
   openSalesMenu(){
+    this.selectedClientService.clear();
+    this.selectedSellerService.clear();
     this.router.navigate(['sales']);
   }
   openSellMenu(){

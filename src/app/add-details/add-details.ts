@@ -50,7 +50,7 @@ export class AddDetails implements OnInit {
   }
 
   addDetail(){
-    if(!this.selectedProduct && !this.cuantity){
+    if(!this.selectedProduct || !this.cuantity){
       Swal.fire({
         title: 'All fields are required.',
         text: "Your must to complete all the fields to add the detail!",
@@ -60,6 +60,20 @@ export class AddDetails implements OnInit {
         confirmButtonText: 'Ok'
       });
       return;
+    }
+
+    for(let i = 0; i < this.details.length; i++){
+      if(this.selectedProduct!.id == this.details[i].productId){
+        Swal.fire({
+          title: 'Product already added!.',
+          text: "Your can't add a product that is already added!",
+          icon: 'warning',
+          showCancelButton: false,
+          confirmButtonColor: '#3085d6',
+          confirmButtonText: 'Ok'
+        });
+        return;
+      }
     }
 
     const detail: SaleDetailRequestModel = {
