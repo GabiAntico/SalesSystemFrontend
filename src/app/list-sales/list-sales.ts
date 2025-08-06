@@ -38,6 +38,6 @@ export class ListSales implements OnInit {
   }
 
   openSaleDetail(sale: Sales) {
-    this.router.navigate(['sale-detail']);
+    this.router.navigate(['sale-detail', sale.id]);
   }
 }

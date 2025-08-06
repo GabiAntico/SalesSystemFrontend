@@ -5,6 +5,7 @@ import {Sales} from '../models/salesModel';
 import {ClientModel} from '../models/clientModel';
 import {SellerModel} from '../models/sellerModel';
 import {SaleRequestModel} from '../models/SaleRequestModel';
+import {SaleComplete} from '../models/SaleCompleteModel';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,9 @@ export class SalesService {
   getSalesByClient(name: string): Observable<Sales[]> {
     const params = new HttpParams().set('name', name);
     return this.http.get<Sales[]>(`${this.apiUrl}/sales`, {params});
+  }
+
+  getSaleCompleteById(id: number): Observable<SaleComplete> {
+    return this.http.get<SaleComplete>(`${this.apiUrl}/sales/${id}`);
   }
 }

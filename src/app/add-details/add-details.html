@@ -13,7 +13,7 @@
       <input (input)="calculateSubtotal()" [(ngModel)]="cuantity" id="cuantity" name="cuantity" type="number" placeholder="Enter the cuantity" class="w-[250px]l border border-gray-300 rounded-md px-4 py-2 bg-[#121414] focus:outline-none focus:ring-2 focus:ring-purple-500">
     </div>
     <div class="justify-center flex mb-4">
-      <strong>Price:
+      <strong>Subtotal:
           @if(selectedProduct){
               {{subTotal}}
           }
@@ -47,6 +47,6 @@
   </div>
 </div>
 <div class="fixed bottom-20 right-20 z-50 text-white">
-    <button type="button" class="px-4 py-2 bg-red-700 rounded-lg hover:bg-red-900 hover:cursor-pointer transition duration-200 mr-3">Cancel</button>
-    <button type="button" class="px-4 py-2 bg-purple-600 rounded-lg hover:bg-purple-900 hover:cursor-pointer transition duration-200">Finish</button>
+    <button (click)="cancelDetails()" type="button" class="px-4 py-2 bg-red-700 rounded-lg hover:bg-red-900 hover:cursor-pointer transition duration-200 mr-3">Cancel</button>
+    <button (click)="submitProducts()" type="button" class="px-4 py-2 bg-purple-600 rounded-lg hover:bg-purple-900 hover:cursor-pointer transition duration-200">Finish</button>
 </div>

@@ -9,12 +9,21 @@ import {SellerModel} from '../models/sellerModel';
 import {SaleRequestModel} from '../models/SaleRequestModel';
 import { NgSelectModule } from '@ng-select/ng-select';
 import {SelectedSellerService} from '../services/selected-seller-service';
+import {SaleDetailRequestModel} from '../models/saleDetailRequestModel';
+import {DetailsListService} from '../services/details-list.service';
+import {ProductsService} from '../services/products.service';
+import {Product} from '../models/productModel';
+import {BehaviorSubject} from 'rxjs';
+import {AsyncPipe} from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-sell',
   imports: [
     NgSelectModule,
     FormsModule,
+    AsyncPipe,
+    CommonModule
   ],
   templateUrl: './sell.html',
   styleUrl: './sell.css',
@@ -22,7 +31,7 @@ import {SelectedSellerService} from '../services/selected-seller-service';
 })
 export class Sell implements OnInit {
 
-  constructor(private salesService: SalesService, private selectedClientService: SelectedClientService, private selectedSellerService: SelectedSellerService, private router: Router) { }
+  constructor(private salesService: SalesService, private selectedClientService: SelectedClientService, private selectedSellerService: SelectedSellerService, private detailsService: DetailsListService, private productService: ProductsService, private router: Router) { }
 
 
   /** Variales to Disable options that corresponds to placeholder */
@@ -34,8 +43,12 @@ export class Sell implements OnInit {
   clients: ClientModel[] = [];
   sellers: SellerModel[] = [];
 
+  details: SaleDetailRequestModel[] = []
+
   selectedClient?: number;
   selectedSeller?: number;
+
+  productMap$ = new BehaviorSubject<{ [key: number]: Product }>({});
 
   ngOnInit() {
 
@@ -73,22 +86,30 @@ export class Sell implements OnInit {
       if (seller) {
         this.selectedSeller = seller.id!
       }
-    })
+    });
+
+    this.detailsService.getDetails().subscribe((details) => {
+      if(details && details.length > 0) {
+        this.details = details;
+        this.details.forEach(detail => {
+          this.findProductById(detail.productId);
+        });
+      }
+    });
   }
 
   postSale(){
 
-    if(this.selectedClient === 0 || this.selectedSeller === 0 || !this.selectedClient || !this.selectedSeller) {
+    if(this.selectedClient === 0 || this.selectedSeller === 0 || !this.selectedClient || !this.selectedSeller
+    || !this.details || this.details.length === 0) {
       alert("Please complete all the fields");
       return;
     }
 
-    // FIXME
-
-    const sale: SaleRequestModel | any = {
+    const sale: SaleRequestModel = {
       clientId: this.selectedClient,
-      sellerId: this.selectedSeller
-
+      sellerId: this.selectedSeller,
+      details: this.details
     }
 
     let savedSale: Sales | null = null
@@ -100,6 +121,7 @@ export class Sell implements OnInit {
           alert("Sale saved successfully");
           this.selectedClientService.clear();
           this.selectedSellerService.clear();
+          this.detailsService.clear();
           this.router.navigate(['sales']);
         }
         else{
@@ -137,4 +159,42 @@ export class Sell implements OnInit {
   openDetailsMenu(){
     this.router.navigate(['add-detail']);
   }
+
+  setClient(){
+    if(this.selectedClient){
+      const client: ClientModel | undefined = this.clients.find(x => x.id === this.selectedClient);
+
+      if(client){
+        this.selectedClientService.setClient(client);
+      }
+
+    }
+
+  }
+  setSeller(){
+    if(this.selectedSeller){
+      const seller: SellerModel | undefined = this.sellers.find(x => x.id === this.selectedSeller);
+
+      if(seller){
+        this.selectedSellerService.setSeller(seller);
+      }
+    }
+  }
+
+  findProductById(id: number){
+    const currentMap = this.productMap$.getValue();
+
+    if (!currentMap[id]) {
+      this.productService.getProductById(id).subscribe(product => {
+        const updatedMap = { ...currentMap, [id]: product };
+        this.productMap$.next(updatedMap); // Emitimos el nuevo valor
+      });
+    }
+  }
+
+  getProductName(id: number, map: { [key: number]: Product }): string {
+    return map[id]?.description || 'Cargando...';
+  }
+
+
 }

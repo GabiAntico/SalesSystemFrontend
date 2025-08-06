@@ -23,7 +23,7 @@ export const routes: Routes = [
     path: 'create-seller', component: NewSeller
   },
   {
-    path: 'sale-detail', component: SaleDetail
+    path: 'sale-detail/:id', component: SaleDetail
   },
   {
     path: 'add-detail', component: AddDetails

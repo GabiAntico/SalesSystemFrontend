@@ -4,6 +4,8 @@ import {ProductsService} from '../services/products.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SaleDetailRequestModel} from '../models/saleDetailRequestModel';
 import Swal from 'sweetalert2';
+import {DetailsListService} from '../services/details-list.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-details',
@@ -26,7 +28,7 @@ export class AddDetails implements OnInit {
 
   details: SaleDetailRequestModel[] = [];
 
-  constructor(private productsService: ProductsService) { }
+  constructor(private productsService: ProductsService, private detailsService: DetailsListService, private router: Router) { }
 
   ngOnInit() {
     this.productsService.getProducts().subscribe({
@@ -87,5 +89,26 @@ export class AddDetails implements OnInit {
     this.productsNamesToRenderTable.push(this.selectedProduct!.description)
 
     this.details.push(detail);
+  }
+
+  submitProducts(){
+    if(this.details.length <= 0){
+      Swal.fire({
+        title: 'There are no products added!.',
+        text: "Your can't save a sell without products.",
+        icon: 'warning',
+        showCancelButton: false,
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Ok'
+      });
+      return;
+    }
+
+    this.detailsService.setDetails(this.details);
+    this.router.navigate(['/sell']);
+  }
+
+  cancelDetails(){
+    this.router.navigate(['/sell']);
   }
 }
