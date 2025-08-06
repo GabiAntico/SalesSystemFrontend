@@ -16,6 +16,7 @@ import {Product} from '../models/productModel';
 import {BehaviorSubject} from 'rxjs';
 import {AsyncPipe} from '@angular/common';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-sell',
@@ -118,7 +119,16 @@ export class Sell implements OnInit {
       next: data => {
         savedSale = data;
         if(savedSale){
-          alert("Sale saved successfully");
+
+          Swal.fire({
+            title: 'Sale saved',
+            text: "Your sale has been saved successfully!",
+            icon: 'success',
+            showCancelButton: false,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Ok'
+          });
+
           this.selectedClientService.clear();
           this.selectedSellerService.clear();
           this.detailsService.clear();
