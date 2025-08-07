@@ -1,41 +1,41 @@
+
 <div class="max-w-lg mx-auto mt-10 p-6 bg-gray-500/10 rounded-lg shadow-md">
   <form (submit)="postSale()" ngForm="postASale">
     <h2 class="text-2xl font-bold mb-6 text-gray-400">Save a new Sale</h2>
+    <ng-container *ngIf="productMap$ | async as productMap">
+      @if(details.length > 0){
+        <div class="flex justify-center mt-8 text-white mb-4">
+          <table class="table-auto border-collapse border-4 border-[#a78bfa] shadow-lg text-left">
+            <thead class="bg-purple-950">
+            <tr>
+              <th class="border-4 border-[#a78bfa] px-4 py-2">Product</th>
+              <th class="border-4 border-[#a78bfa] px-4 py-2">Price</th>
+              <th class="border-4 border-[#a78bfa] px-4 py-2">Quantity</th>
+              <th class="border-4 border-[#a78bfa] px-4 py-2">Subtotal</th>
+            </tr>
+            </thead>
+            <tbody>
+              @for (detail of details; track $index){
+                <tr>
+                  <td class="border-4 border-[#a78bfa] px-4 py-2">{{getProductName(detail.productId, productMap)}}</td>
+                  <td class="border-4 border-[#a78bfa] px-4 py-2">{{detail.price}}</td>
+                  <td class="border-4 border-[#a78bfa] px-4 py-2">{{detail.cuantity}}</td>
+                  <td class="border-4 border-[#a78bfa] px-4 py-2">{{detail.subtotal}}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      } @else {
+        <div class="mb-4 grid grid-cols-1 items-center gap-2">
 
-    @if(details.length > 0){
-      <div class="flex justify-center mt-8 text-white mb-4">
-        <table class="table-auto border-collapse border-4 border-[#a78bfa] shadow-lg text-left">
-          <thead class="bg-purple-950">
-          <tr>
-            <th class="border-4 border-[#a78bfa] px-4 py-2">Product</th>
-            <th class="border-4 border-[#a78bfa] px-4 py-2">Price</th>
-            <th class="border-4 border-[#a78bfa] px-4 py-2">Quantity</th>
-            <th class="border-4 border-[#a78bfa] px-4 py-2">Subtotal</th>
-          </tr>
-          </thead>
-          <tbody>
-          <ng-container *ngIf="productMap$ | async as productMap">
-            @for (detail of details; track $index){
-              <tr>
-                <td class="border-4 border-[#a78bfa] px-4 py-2">{{getProductName(detail.productId, productMap)}}</td>
-                <td class="border-4 border-[#a78bfa] px-4 py-2">{{detail.price}}</td>
-                <td class="border-4 border-[#a78bfa] px-4 py-2">{{detail.cuantity}}</td>
-                <td class="border-4 border-[#a78bfa] px-4 py-2">{{detail.subtotal}}</td>
-              </tr>
-            }
-          </ng-container>
-          </tbody>
-        </table>
-      </div>
-    } @else {
-      <div class="mb-4 grid grid-cols-1 items-center gap-2">
-
-        <button (click)="openDetailsMenu()" type="button"
-                class="w-full bg-green-700  text-white font-semibold py-2 px-4 rounded-md hover:bg-green-900 hover:cursor-pointer transition duration-200">
-          Add details
-        </button>
-      </div>
-    }
+          <button (click)="openDetailsMenu()" type="button"
+                  class="w-full bg-green-700  text-white font-semibold py-2 px-4 rounded-md hover:bg-green-900 hover:cursor-pointer transition duration-200">
+            Add details
+          </button>
+        </div>
+      }
+    </ng-container>
 
   <!-- Product code -->
 
