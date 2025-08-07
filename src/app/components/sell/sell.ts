@@ -202,8 +202,12 @@ export class Sell implements OnInit {
     }
   }
 
-  getProductName(id: number, map: { [key: number]: Product }): string {
-    return map[id]?.description || 'Cargando...';
+  //, map: { [key: number]: Product } Antiguo parámetro
+
+  getProductName(id: number): string {
+
+    return this.productMap$?.getValue()[id].description || 'Cargando...'
+    // return map[id]?.description || 'Cargando...';
   }
 
 
