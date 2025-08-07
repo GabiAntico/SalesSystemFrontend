@@ -21,7 +21,7 @@ export class AddDetails implements OnInit {
   products: Product[] = [];
 
   selectedProduct?: Product;
-  cuantity?: number;
+  quantity?: number;
   subTotal?: number;
 
   productsNamesToRenderTable: string[] = [];
@@ -43,8 +43,8 @@ export class AddDetails implements OnInit {
   }
 
   calculateSubtotal(){
-    if(this.selectedProduct && this.cuantity){
-      this.subTotal = this.selectedProduct.unitaryPrice * this.cuantity;
+    if(this.selectedProduct && this.quantity){
+      this.subTotal = this.selectedProduct.unitaryPrice * this.quantity;
     }
     else{
       this.subTotal = 0;
@@ -52,7 +52,7 @@ export class AddDetails implements OnInit {
   }
 
   addDetail(){
-    if(!this.selectedProduct || !this.cuantity){
+    if(!this.selectedProduct || !this.quantity){
       Swal.fire({
         title: 'All fields are required.',
         text: "Your must to complete all the fields to add the detail!",
@@ -81,7 +81,7 @@ export class AddDetails implements OnInit {
     const detail: SaleDetailRequestModel = {
       id: undefined,
       productId: this.selectedProduct!.id,
-      cuantity: this.cuantity!,
+      cuantity: this.quantity!,
       price: this.selectedProduct!.unitaryPrice,
       subtotal: this.subTotal!
     }
