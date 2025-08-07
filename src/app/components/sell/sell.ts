@@ -49,7 +49,9 @@ export class Sell implements OnInit {
   selectedClient?: number;
   selectedSeller?: number;
 
-  productMap$ = new BehaviorSubject<{ [key: number]: Product }>({});
+  // productMap$ = new BehaviorSubject<{ [key: number]: Product }>({});
+
+  productsNames: string[] = [];
 
   ngOnInit() {
 
@@ -192,23 +194,30 @@ export class Sell implements OnInit {
   }
 
   findProductById(id: number){
-    const currentMap = this.productMap$.getValue();
+    // const currentMap = this.productMap$.getValue();
 
-    if (!currentMap[id]) {
-      this.productService.getProductById(id).subscribe(product => {
-        const updatedMap = { ...currentMap, [id]: product };
-        this.productMap$.next(updatedMap); // Emitimos el nuevo valor
-      });
-    }
+    // if (!currentMap[id]) {
+    //   this.productService.getProductById(id).subscribe(product => {
+    //     this.productsNames.push(product.description);
+    //     const updatedMap = { ...currentMap, [id]: product };
+    //     this.productMap$.next(updatedMap); // Emitimos el nuevo valor
+    //   });
+    // }
+
+    this.productService.getProductById(id).subscribe({
+      next: product => {
+        this.productsNames.push(product.description);
+      }
+    })
   }
 
   //, map: { [key: number]: Product } Antiguo parámetro
 
-  getProductName(id: number): string {
-
-    return this.productMap$?.getValue()[id].description || 'Cargando...'
-    // return map[id]?.description || 'Cargando...';
-  }
+  // getProductName(id: number): string {
+  //
+  //   return this.productMap$?.getValue()[id].description || 'Cargando...'
+  //   // return map[id]?.description || 'Cargando...';
+  // }
 
 
 }

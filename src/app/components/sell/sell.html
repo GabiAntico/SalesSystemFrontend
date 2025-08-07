@@ -17,7 +17,7 @@
             <tbody>
               @for (detail of details; track $index){
                 <tr>
-                  <td class="border-4 border-[#a78bfa] px-4 py-2">{{getProductName(detail.productId)}}</td>
+                  <td class="border-4 border-[#a78bfa] px-4 py-2">{{productsNames[$index]}}</td>
                   <td class="border-4 border-[#a78bfa] px-4 py-2">{{detail.price}}</td>
                   <td class="border-4 border-[#a78bfa] px-4 py-2">{{detail.cuantity}}</td>
                   <td class="border-4 border-[#a78bfa] px-4 py-2">{{detail.subtotal}}</td>
