@@ -10,7 +10,7 @@ export class ProductsService {
 
   constructor(private http: HttpClient) { }
 
-  private apiUrl = 'http://localhost:8080/api/products';
+  private apiUrl = 'https://salessystembackend.onrender.com/api/products';
 
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.apiUrl)

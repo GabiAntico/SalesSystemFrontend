@@ -14,7 +14,7 @@ export class SalesService {
 
   constructor(private http: HttpClient) {}
 
-  private apiUrl = 'http://localhost:8080/api';
+  private apiUrl = 'https://salessystembackend.onrender.com/api';
 
 
   getAllClients(): Observable<ClientModel[]> {

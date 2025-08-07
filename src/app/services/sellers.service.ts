@@ -8,7 +8,7 @@ import {Observable} from 'rxjs';
 })
 export class SellersService {
 
-  private apiUrl = 'http://localhost:8080/api/sellers';
+  private apiUrl = 'https://salessystembackend.onrender.com/api/sellers';
 
   constructor(private http: HttpClient) { }
 

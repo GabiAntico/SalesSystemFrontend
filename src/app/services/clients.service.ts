@@ -8,7 +8,7 @@ import {ClientModel} from '../components/models/clientModel';
 })
 export class ClientsService {
 
-  private apiUrl = 'http://localhost:8080/api/clients';
+  private apiUrl = 'https://salessystembackend.onrender.com/api/clients';
 
   constructor(private http: HttpClient) { }
 
