@@ -1,13 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {SaleComplete} from '../models/SaleCompleteModel';
-import {SalesService} from '../services/sales.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import {SalesService} from '../../services/sales.service';
+import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {CurrencyPipe} from '@angular/common';
 
 @Component({
   selector: 'app-sale-detail',
   imports: [
-    CurrencyPipe
+    CurrencyPipe,
+    RouterLink
   ],
   templateUrl: './sale-detail.html',
   styleUrl: './sale-detail.css'

@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {SalesService} from '../services/sales.service';
+import {SalesService} from '../../services/sales.service';
 import {Sales} from '../models/salesModel';
 
 @Component({

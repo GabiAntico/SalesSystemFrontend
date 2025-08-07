@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {ClientModel} from '../models/clientModel';
+import {ClientModel} from '../components/models/clientModel';
 import {BehaviorSubject, Observable} from 'rxjs';
 
 @Injectable({

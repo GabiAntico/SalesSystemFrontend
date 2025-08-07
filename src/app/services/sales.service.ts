@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Sales} from '../models/salesModel';
-import {ClientModel} from '../models/clientModel';
-import {SellerModel} from '../models/sellerModel';
-import {SaleRequestModel} from '../models/SaleRequestModel';
-import {SaleComplete} from '../models/SaleCompleteModel';
+import {Sales} from '../components/models/salesModel';
+import {ClientModel} from '../components/models/clientModel';
+import {SellerModel} from '../components/models/sellerModel';
+import {SaleRequestModel} from '../components/models/SaleRequestModel';
+import {SaleComplete} from '../components/models/SaleCompleteModel';
 
 @Injectable({
   providedIn: 'root'

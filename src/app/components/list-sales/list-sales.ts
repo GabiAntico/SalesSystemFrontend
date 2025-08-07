@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {SalesService} from '../services/sales.service';
+import {SalesService} from '../../services/sales.service';
 import {Sales} from '../models/salesModel';
 import {Filter} from '../filter/filter';
 import {Router} from '@angular/router';

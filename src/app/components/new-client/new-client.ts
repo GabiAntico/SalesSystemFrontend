@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import {ClientsService} from '../services/clients.service';
+import {ClientsService} from '../../services/clients.service';
 import {ClientModel} from '../models/clientModel';
 import Swal from 'sweetalert2';
 import {FormsModule} from '@angular/forms';
 import {Router, RouterLink} from '@angular/router';
-import {SelectedClientService} from '../services/selected-client-service';
+import {SelectedClientService} from '../../services/selected-client-service';
 
 @Component({
   selector: 'app-new-client',

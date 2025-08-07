@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import {ListSales} from './list-sales/list-sales';
-import {Sell} from './sell/sell';
-import {NewClient} from './new-client/new-client';
-import {NewSeller} from './new-seller/new-seller';
-import {SaleDetail} from './sale-detail/sale-detail';
-import {AddDetails} from './add-details/add-details';
+import {ListSales} from './components/list-sales/list-sales';
+import {Sell} from './components/sell/sell';
+import {NewClient} from './components/new-client/new-client';
+import {NewSeller} from './components/new-seller/new-seller';
+import {SaleDetail} from './components/sale-detail/sale-detail';
+import {AddDetails} from './components/add-details/add-details';
 
 export const routes: Routes = [
   {

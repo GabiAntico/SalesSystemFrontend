@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Product} from '../models/productModel';
-import {ProductsService} from '../services/products.service';
+import {ProductsService} from '../../services/products.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SaleDetailRequestModel} from '../models/saleDetailRequestModel';
 import Swal from 'sweetalert2';
-import {DetailsListService} from '../services/details-list.service';
+import {DetailsListService} from '../../services/details-list.service';
 import {Router} from '@angular/router';
 
 @Component({

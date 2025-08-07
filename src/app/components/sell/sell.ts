@@ -1,17 +1,17 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {SalesService} from '../services/sales.service';
+import {SalesService} from '../../services/sales.service';
 import {Sales} from '../models/salesModel'
 import {Router, RouterLink} from '@angular/router';
 import {ClientModel} from '../models/clientModel';
-import {SelectedClientService} from '../services/selected-client-service';
+import {SelectedClientService} from '../../services/selected-client-service';
 import {SellerModel} from '../models/sellerModel';
 import {SaleRequestModel} from '../models/SaleRequestModel';
 import { NgSelectModule } from '@ng-select/ng-select';
-import {SelectedSellerService} from '../services/selected-seller-service';
+import {SelectedSellerService} from '../../services/selected-seller-service';
 import {SaleDetailRequestModel} from '../models/saleDetailRequestModel';
-import {DetailsListService} from '../services/details-list.service';
-import {ProductsService} from '../services/products.service';
+import {DetailsListService} from '../../services/details-list.service';
+import {ProductsService} from '../../services/products.service';
 import {Product} from '../models/productModel';
 import {BehaviorSubject} from 'rxjs';
 import {AsyncPipe} from '@angular/common';

@@ -3,9 +3,9 @@ import {FormsModule} from "@angular/forms";
 import Swal from 'sweetalert2';
 import {ClientModel} from '../models/clientModel';
 import {SellerModel} from '../models/sellerModel';
-import {SellersService} from '../services/sellers.service';
+import {SellersService} from '../../services/sellers.service';
 import {Router, RouterLink} from '@angular/router';
-import {SelectedSellerService} from '../services/selected-seller-service';
+import {SelectedSellerService} from '../../services/selected-seller-service';
 
 @Component({
   selector: 'app-new-seller',
