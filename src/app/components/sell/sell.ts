@@ -17,6 +17,7 @@ import {BehaviorSubject} from 'rxjs';
 import {AsyncPipe} from '@angular/common';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
+import {SaleDetailModelTransfer} from '../models/saleDetailModelTransfer';
 
 @Component({
   selector: 'app-sell',
@@ -44,14 +45,10 @@ export class Sell implements OnInit {
   clients: ClientModel[] = [];
   sellers: SellerModel[] = [];
 
-  details: SaleDetailRequestModel[] = []
+  details: SaleDetailModelTransfer[] = []
 
   selectedClient?: number;
   selectedSeller?: number;
-
-  // productMap$ = new BehaviorSubject<{ [key: number]: Product }>({});
-
-  productsNames: string[] = [];
 
   ngOnInit() {
 
@@ -94,9 +91,10 @@ export class Sell implements OnInit {
     this.detailsService.getDetails().subscribe((details) => {
       if(details && details.length > 0) {
         this.details = details;
-        this.details.forEach(detail => {
-          this.findProductById(detail.productId);
-        });
+
+        // this.details.forEach(detail => {
+        //   this.findProductById(detail.productId);
+        // });
       }
     });
   }
@@ -109,10 +107,23 @@ export class Sell implements OnInit {
       return;
     }
 
+    const detailsMapped : SaleDetailRequestModel[] = []
+
+    this.details.forEach(detail => {
+      const detailMapped: SaleDetailRequestModel = {
+        id: detail.id,
+        productId: detail.product.id,
+        cuantity: detail.cuantity,
+        price: detail.price,
+        subtotal: detail.subtotal
+      }
+      detailsMapped.push(detailMapped)
+    })
+
     const sale: SaleRequestModel = {
       clientId: this.selectedClient,
       sellerId: this.selectedSeller,
-      details: this.details
+      details: detailsMapped
     }
 
     let savedSale: Sales | null = null
@@ -193,23 +204,23 @@ export class Sell implements OnInit {
     }
   }
 
-  findProductById(id: number){
-    // const currentMap = this.productMap$.getValue();
-
-    // if (!currentMap[id]) {
-    //   this.productService.getProductById(id).subscribe(product => {
-    //     this.productsNames.push(product.description);
-    //     const updatedMap = { ...currentMap, [id]: product };
-    //     this.productMap$.next(updatedMap); // Emitimos el nuevo valor
-    //   });
-    // }
-
-    this.productService.getProductById(id).subscribe({
-      next: product => {
-        this.productsNames.push(product.description);
-      }
-    })
-  }
+  // findProductById(id: number){
+  //   // const currentMap = this.productMap$.getValue();
+  //
+  //   // if (!currentMap[id]) {
+  //   //   this.productService.getProductById(id).subscribe(product => {
+  //   //     this.productsNames.push(product.description);
+  //   //     const updatedMap = { ...currentMap, [id]: product };
+  //   //     this.productMap$.next(updatedMap); // Emitimos el nuevo valor
+  //   //   });
+  //   // }
+  //
+  //   this.productService.getProductById(id).subscribe({
+  //     next: product => {
+  //       this.productsNames.push(product.description);
+  //     }
+  //   })
+  // }
 
   //, map: { [key: number]: Product } Antiguo parámetro
 

@@ -6,6 +6,7 @@ import {SaleDetailRequestModel} from '../models/saleDetailRequestModel';
 import Swal from 'sweetalert2';
 import {DetailsListService} from '../../services/details-list.service';
 import {Router} from '@angular/router';
+import {SaleDetailModelTransfer} from '../models/saleDetailModelTransfer';
 
 @Component({
   selector: 'app-add-details',
@@ -26,7 +27,7 @@ export class AddDetails implements OnInit {
 
   productsNamesToRenderTable: string[] = [];
 
-  details: SaleDetailRequestModel[] = [];
+  details: SaleDetailModelTransfer[] = [];
 
   constructor(private productsService: ProductsService, private detailsService: DetailsListService, private router: Router) { }
 
@@ -65,7 +66,7 @@ export class AddDetails implements OnInit {
     }
 
     for(let i = 0; i < this.details.length; i++){
-      if(this.selectedProduct!.id == this.details[i].productId){
+      if(this.selectedProduct!.id == this.details[i].product.id){
         Swal.fire({
           title: 'Product already added!.',
           text: "Your can't add a product that is already added!",
@@ -78,9 +79,9 @@ export class AddDetails implements OnInit {
       }
     }
 
-    const detail: SaleDetailRequestModel = {
+    const detail: SaleDetailModelTransfer = {
       id: undefined,
-      productId: this.selectedProduct!.id,
+      product: this.selectedProduct!,
       cuantity: this.quantity!,
       price: this.selectedProduct!.unitaryPrice,
       subtotal: this.subTotal!
