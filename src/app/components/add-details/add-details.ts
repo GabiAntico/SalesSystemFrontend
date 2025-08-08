@@ -67,6 +67,18 @@ export class AddDetails implements OnInit {
       return;
     }
 
+    if(this.quantity <= 0){
+      Swal.fire({
+        title: "Incorrect quantity",
+        text: "The quantity is can't be lower or equal to 0.",
+        icon: 'warning',
+        showCancelButton: false,
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Ok'
+      });
+      return;
+    }
+
     for(let i = 0; i < this.details.length; i++){
       if(this.selectedProduct!.id == this.details[i].product.id){
         Swal.fire({
