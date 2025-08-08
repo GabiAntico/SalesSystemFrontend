@@ -14,9 +14,11 @@
     </div>
     <div class="justify-center flex mb-4">
       <strong>Subtotal:
-          @if(selectedProduct){
-              {{subTotal | currency:'ARS' }}
-          }
+        @if(selectedProduct && subTotal >= 0){
+          {{subTotal | currency:'ARS' }}
+        } @else {
+          {{0 | currency:'ARS'}}
+        }
       </strong>
     </div>
     <div class="mb-4">

@@ -25,7 +25,7 @@ export class AddDetails implements OnInit {
 
   selectedProduct?: Product;
   quantity?: number;
-  subTotal?: number;
+  subTotal: number = 0;
 
   productsNamesToRenderTable: string[] = [];
 
@@ -70,7 +70,7 @@ export class AddDetails implements OnInit {
     if(this.quantity <= 0){
       Swal.fire({
         title: "Incorrect quantity",
-        text: "The quantity is can't be lower or equal to 0.",
+        text: "The quantity can't be lower or equal to 0.",
         icon: 'warning',
         showCancelButton: false,
         confirmButtonColor: '#3085d6',
