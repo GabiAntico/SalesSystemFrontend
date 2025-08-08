@@ -3,11 +3,13 @@ import {SalesService} from '../../services/sales.service';
 import {Sales} from '../models/salesModel';
 import {Filter} from '../filter/filter';
 import {Router} from '@angular/router';
+import {CurrencyPipe} from '@angular/common';
 
 @Component({
   selector: 'app-list-sales',
   imports: [
-    Filter
+    Filter,
+    CurrencyPipe
   ],
   templateUrl: './list-sales.html',
   styleUrl: './list-sales.css',

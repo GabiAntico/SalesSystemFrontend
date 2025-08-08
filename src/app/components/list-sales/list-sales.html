@@ -13,7 +13,7 @@
     <tbody>
       @for(sale of sales; track $index){
         <tr (click)="openSaleDetail(sale)" class="hover:bg-gray-100 hover:text-black">
-          <td class=" px-4 py-2">{{sale.total}}</td>
+          <td class=" px-4 py-2">{{sale.total | currency:'ARS' }}</td>
           <td class=" px-4 py-2">{{sale.client}}</td>
           <td class=" px-4 py-2">{{sale.seller}}</td>
         </tr>

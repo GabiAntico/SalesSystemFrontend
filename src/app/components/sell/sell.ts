@@ -14,7 +14,7 @@ import {DetailsListService} from '../../services/details-list.service';
 import {ProductsService} from '../../services/products.service';
 import {Product} from '../models/productModel';
 import {BehaviorSubject} from 'rxjs';
-import {AsyncPipe} from '@angular/common';
+import {CurrencyPipe} from '@angular/common';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 import {SaleDetailModelTransfer} from '../models/saleDetailModelTransfer';
@@ -24,8 +24,8 @@ import {SaleDetailModelTransfer} from '../models/saleDetailModelTransfer';
   imports: [
     NgSelectModule,
     FormsModule,
-    AsyncPipe,
-    CommonModule
+    CommonModule,
+    CurrencyPipe
   ],
   templateUrl: './sell.html',
   styleUrl: './sell.css',

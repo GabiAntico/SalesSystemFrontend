@@ -18,8 +18,8 @@
               @for (detail of details; track $index){
                 <tr>
                   <td class="border-4 border-[#a78bfa] px-4 py-2">{{detail.product.description || 'Cargando...'}}</td>
-                  <td class="border-4 border-[#a78bfa] px-4 py-2">{{detail.price}}</td>
-                  <td class="border-4 border-[#a78bfa] px-4 py-2">{{detail.cuantity}}</td>
+                  <td class="border-4 border-[#a78bfa] px-4 py-2">{{detail.price | currency:'ARS' }}</td>
+                  <td class="border-4 border-[#a78bfa] px-4 py-2">{{detail.cuantity | currency:'ARS'}}</td>
                   <td class="border-4 border-[#a78bfa] px-4 py-2">{{detail.subtotal}}</td>
                 </tr>
               }

@@ -7,12 +7,14 @@ import Swal from 'sweetalert2';
 import {DetailsListService} from '../../services/details-list.service';
 import {Router} from '@angular/router';
 import {SaleDetailModelTransfer} from '../models/saleDetailModelTransfer';
+import {CurrencyPipe} from '@angular/common';
 
 @Component({
   selector: 'app-add-details',
   imports: [
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    CurrencyPipe
   ],
   templateUrl: './add-details.html',
   styleUrl: './add-details.css'
